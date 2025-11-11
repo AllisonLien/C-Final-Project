@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Pet Adoption and Shelter Management System/1.0.0": {
+        "runtime": {
+          "Pet Adoption and Shelter Management System.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Pet Adoption and Shelter Management System/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
