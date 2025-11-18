@@ -1,4 +1,4 @@
-﻿namespace Pet_Adoption_and_Shelter_Management_System
+namespace Pet_Adoption_and_Shelter_Management_System
 {
     partial class FormLogin
     {
@@ -33,12 +33,12 @@
             LblPass = new Label();
             LblRole = new Label();
             BtnLogin = new Button();
-            BtnClear = new Button();
             TxtName = new TextBox();
             TxtPass = new TextBox();
             ComRole = new ComboBox();
             LblRegister = new Label();
             LlblRegister = new LinkLabel();
+            BtnRegister = new Button();
             SuspendLayout();
             // 
             // label1
@@ -97,17 +97,7 @@
             BtnLogin.TabIndex = 4;
             BtnLogin.Text = "Login";
             BtnLogin.UseVisualStyleBackColor = true;
-            // 
-            // BtnClear
-            // 
-            BtnClear.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            BtnClear.Location = new Point(422, 291);
-            BtnClear.Margin = new Padding(4);
-            BtnClear.Name = "BtnClear";
-            BtnClear.Size = new Size(96, 32);
-            BtnClear.TabIndex = 5;
-            BtnClear.Text = "Clear";
-            BtnClear.UseVisualStyleBackColor = true;
+            BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // TxtName
             // 
@@ -155,7 +145,18 @@
             LlblRegister.TabIndex = 10;
             LlblRegister.TabStop = true;
             LlblRegister.Text = "Register Here!";
-            LlblRegister.LinkClicked += LlblRegister_LinkClicked;
+            LlblRegister.LinkClicked += new LinkLabelLinkClickedEventHandler(this.LlblRegister_LinkClicked);
+            // 
+            // BtnRegister
+            // 
+            BtnRegister.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            BtnRegister.Location = new Point(399, 291);
+            BtnRegister.Name = "BtnRegister";
+            BtnRegister.Size = new Size(98, 31);
+            BtnRegister.TabIndex = 11;
+            BtnRegister.Text = "Register";
+            BtnRegister.UseVisualStyleBackColor = true;
+            BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
             // 
             // FormLogin
             // 
@@ -163,12 +164,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(734, 435);
+            Controls.Add(BtnRegister);
             Controls.Add(LlblRegister);
             Controls.Add(LblRegister);
             Controls.Add(ComRole);
             Controls.Add(TxtPass);
             Controls.Add(TxtName);
-            Controls.Add(BtnClear);
             Controls.Add(BtnLogin);
             Controls.Add(LblRole);
             Controls.Add(LblPass);
@@ -189,11 +190,11 @@
         private Label LblPass;
         private Label LblRole;
         private Button BtnLogin;
-        private Button BtnClear;
         private TextBox TxtName;
         private TextBox TxtPass;
         private ComboBox ComRole;
         private Label LblRegister;
         private LinkLabel LlblRegister;
+        private Button BtnRegister;
     }
 }
