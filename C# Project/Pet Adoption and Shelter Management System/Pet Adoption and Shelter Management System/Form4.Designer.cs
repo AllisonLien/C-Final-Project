@@ -45,13 +45,19 @@
             TxtBreed = new TextBox();
             TxtAge = new TextBox();
             GBoxSex = new GroupBox();
-            RBtnMale = new RadioButton();
             RBtnFemale = new RadioButton();
+            RBtnMale = new RadioButton();
             CBoxLocation = new ComboBox();
             TxtD = new TextBox();
             LblView = new Label();
-            LBoxView = new ListBox();
+            LblCuser = new Label();
+            BtnHome = new Button();
+            BtnView = new Button();
+            dataGridView1 = new DataGridView();
+            BtnUpdate = new Button();
+            TxtID = new TextBox();
             GBoxSex.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -139,42 +145,46 @@
             // BtnAdd
             // 
             BtnAdd.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
-            BtnAdd.Location = new Point(102, 281);
+            BtnAdd.Location = new Point(172, 272);
             BtnAdd.Name = "BtnAdd";
             BtnAdd.Size = new Size(108, 36);
             BtnAdd.TabIndex = 8;
             BtnAdd.Text = "Add";
             BtnAdd.UseVisualStyleBackColor = true;
+            BtnAdd.Click += BtnAdd_Click;
             // 
             // BtnEdit
             // 
             BtnEdit.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
-            BtnEdit.Location = new Point(241, 281);
+            BtnEdit.Location = new Point(286, 272);
             BtnEdit.Name = "BtnEdit";
             BtnEdit.Size = new Size(108, 36);
             BtnEdit.TabIndex = 9;
             BtnEdit.Text = "Edit";
             BtnEdit.UseVisualStyleBackColor = true;
+            BtnEdit.Click += BtnEdit_Click;
             // 
             // BtnDelete
             // 
             BtnDelete.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
-            BtnDelete.Location = new Point(395, 281);
+            BtnDelete.Location = new Point(514, 272);
             BtnDelete.Name = "BtnDelete";
             BtnDelete.Size = new Size(108, 36);
             BtnDelete.TabIndex = 10;
             BtnDelete.Text = "Delete";
             BtnDelete.UseVisualStyleBackColor = true;
+            BtnDelete.Click += BtnDelete_Click;
             // 
             // BtnClear
             // 
             BtnClear.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
-            BtnClear.Location = new Point(564, 281);
+            BtnClear.Location = new Point(628, 272);
             BtnClear.Name = "BtnClear";
             BtnClear.Size = new Size(108, 36);
             BtnClear.TabIndex = 11;
             BtnClear.Text = "Clear";
             BtnClear.UseVisualStyleBackColor = true;
+            BtnClear.Click += BtnClear_Click;
             // 
             // TxtName
             // 
@@ -222,18 +232,6 @@
             GBoxSex.TabStop = false;
             GBoxSex.Text = "Sex";
             // 
-            // RBtnMale
-            // 
-            RBtnMale.AutoSize = true;
-            RBtnMale.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
-            RBtnMale.Location = new Point(16, 27);
-            RBtnMale.Name = "RBtnMale";
-            RBtnMale.Size = new Size(66, 25);
-            RBtnMale.TabIndex = 0;
-            RBtnMale.TabStop = true;
-            RBtnMale.Text = "Male";
-            RBtnMale.UseVisualStyleBackColor = true;
-            // 
             // RBtnFemale
             // 
             RBtnFemale.AutoSize = true;
@@ -245,6 +243,18 @@
             RBtnFemale.TabStop = true;
             RBtnFemale.Text = "Female";
             RBtnFemale.UseVisualStyleBackColor = true;
+            // 
+            // RBtnMale
+            // 
+            RBtnMale.AutoSize = true;
+            RBtnMale.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
+            RBtnMale.Location = new Point(16, 27);
+            RBtnMale.Name = "RBtnMale";
+            RBtnMale.Size = new Size(66, 25);
+            RBtnMale.TabIndex = 0;
+            RBtnMale.TabStop = true;
+            RBtnMale.Text = "Male";
+            RBtnMale.UseVisualStyleBackColor = true;
             // 
             // CBoxLocation
             // 
@@ -262,7 +272,7 @@
             TxtD.Location = new Point(57, 215);
             TxtD.Multiline = true;
             TxtD.Name = "TxtD";
-            TxtD.Size = new Size(679, 58);
+            TxtD.Size = new Size(679, 45);
             TxtD.TabIndex = 18;
             // 
             // LblView
@@ -275,23 +285,81 @@
             LblView.TabIndex = 19;
             LblView.Text = "View All Pets";
             // 
-            // LBoxView
+            // LblCuser
             // 
-            LBoxView.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
-            LBoxView.FormattingEnabled = true;
-            LBoxView.ItemHeight = 21;
-            LBoxView.Location = new Point(57, 350);
-            LBoxView.Name = "LBoxView";
-            LBoxView.Size = new Size(716, 88);
-            LBoxView.TabIndex = 20;
+            LblCuser.AutoSize = true;
+            LblCuser.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblCuser.ForeColor = Color.DarkCyan;
+            LblCuser.Location = new Point(588, 41);
+            LblCuser.Name = "LblCuser";
+            LblCuser.Size = new Size(58, 21);
+            LblCuser.TabIndex = 21;
+            LblCuser.Text = "label3";
+            // 
+            // BtnHome
+            // 
+            BtnHome.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnHome.Location = new Point(93, 26);
+            BtnHome.Name = "BtnHome";
+            BtnHome.Size = new Size(142, 36);
+            BtnHome.TabIndex = 22;
+            BtnHome.Text = "Home Page";
+            BtnHome.UseVisualStyleBackColor = true;
+            BtnHome.Click += BtnHome_Click;
+            // 
+            // BtnView
+            // 
+            BtnView.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnView.Location = new Point(49, 272);
+            BtnView.Name = "BtnView";
+            BtnView.Size = new Size(117, 36);
+            BtnView.TabIndex = 23;
+            BtnView.Text = "View Pets";
+            BtnView.UseVisualStyleBackColor = true;
+            BtnView.Click += BtnView_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(65, 355);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(671, 150);
+            dataGridView1.TabIndex = 24;
+            // 
+            // BtnUpdate
+            // 
+            BtnUpdate.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnUpdate.Location = new Point(408, 272);
+            BtnUpdate.Name = "BtnUpdate";
+            BtnUpdate.Size = new Size(100, 36);
+            BtnUpdate.TabIndex = 25;
+            BtnUpdate.Text = "Update";
+            BtnUpdate.UseVisualStyleBackColor = true;
+            BtnUpdate.Click += BtnUpdate_Click;
+            // 
+            // TxtID
+            // 
+            TxtID.Location = new Point(121, 61);
+            TxtID.Name = "TxtID";
+            TxtID.Size = new Size(100, 23);
+            TxtID.TabIndex = 26;
+            TxtID.Visible = false;
             // 
             // FormPet
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(800, 450);
-            Controls.Add(LBoxView);
+            ClientSize = new Size(800, 516);
+            Controls.Add(TxtID);
+            Controls.Add(BtnUpdate);
+            Controls.Add(dataGridView1);
+            Controls.Add(BtnView);
+            Controls.Add(BtnHome);
+            Controls.Add(LblCuser);
             Controls.Add(LblView);
             Controls.Add(TxtD);
             Controls.Add(CBoxLocation);
@@ -314,8 +382,10 @@
             Controls.Add(label1);
             Name = "FormPet";
             Text = "Manage Pet ";
+            Load += FormPet_Load;
             GBoxSex.ResumeLayout(false);
             GBoxSex.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -344,6 +414,11 @@
         private ComboBox CBoxLocation;
         private TextBox TxtD;
         private Label LblView;
-        private ListBox LBoxView;
+        private Label LblCuser;
+        private Button BtnHome;
+        private Button BtnView;
+        private DataGridView dataGridView1;
+        private Button BtnUpdate;
+        private TextBox TxtID;
     }
 }

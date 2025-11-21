@@ -32,12 +32,12 @@
             label2 = new Label();
             label3 = new Label();
             groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
-            button1 = new Button();
             button2 = new Button();
-            label4 = new Label();
+            button1 = new Button();
+            groupBox2 = new GroupBox();
             label5 = new Label();
             label6 = new Label();
+            label4 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -83,16 +83,14 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBox1";
             // 
-            // groupBox2
+            // button2
             // 
-            groupBox2.Controls.Add(label5);
-            groupBox2.Controls.Add(label6);
-            groupBox2.Location = new Point(89, 190);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(574, 161);
-            groupBox2.TabIndex = 4;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "groupBox2";
+            button2.Location = new Point(274, 71);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 4;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -103,23 +101,16 @@
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // groupBox2
             // 
-            button2.Location = new Point(274, 71);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 4;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(326, 35);
-            label4.Name = "label4";
-            label4.Size = new Size(38, 15);
-            label4.TabIndex = 5;
-            label4.Text = "label4";
+            groupBox2.Controls.Add(label5);
+            groupBox2.Controls.Add(label6);
+            groupBox2.Location = new Point(89, 190);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(574, 161);
+            groupBox2.TabIndex = 4;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "groupBox2";
             // 
             // label5
             // 
@@ -138,6 +129,15 @@
             label6.Size = new Size(38, 15);
             label6.TabIndex = 0;
             label6.Text = "label6";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(326, 35);
+            label4.Name = "label4";
+            label4.Size = new Size(60, 15);
+            label4.TabIndex = 5;
+            label4.Text = "Adoption ";
             // 
             // FormAdoptionRequest
             // 

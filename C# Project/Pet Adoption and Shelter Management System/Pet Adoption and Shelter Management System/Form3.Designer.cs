@@ -35,6 +35,7 @@
             BtnView = new Button();
             Btnout = new Button();
             LblWelcome = new Label();
+            LblCuser = new Label();
             SuspendLayout();
             // 
             // label1
@@ -57,6 +58,7 @@
             BtnPets.TabIndex = 1;
             BtnPets.Text = "Manage Pets";
             BtnPets.UseVisualStyleBackColor = true;
+            BtnPets.Click += BtnPets_Click;
             // 
             // BtnUser
             // 
@@ -67,6 +69,7 @@
             BtnUser.TabIndex = 2;
             BtnUser.Text = "Manage Users";
             BtnUser.UseVisualStyleBackColor = true;
+            BtnUser.Click += BtnUser_Click;
             // 
             // BtnRequest
             // 
@@ -97,6 +100,7 @@
             Btnout.TabIndex = 5;
             Btnout.Text = "Logout";
             Btnout.UseVisualStyleBackColor = true;
+            Btnout.Click += Btnout_Click;
             // 
             // LblWelcome
             // 
@@ -108,12 +112,24 @@
             LblWelcome.TabIndex = 6;
             LblWelcome.Text = "Welcome";
             // 
+            // LblCuser
+            // 
+            LblCuser.AutoSize = true;
+            LblCuser.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblCuser.ForeColor = Color.DarkCyan;
+            LblCuser.Location = new Point(308, 121);
+            LblCuser.Name = "LblCuser";
+            LblCuser.Size = new Size(58, 21);
+            LblCuser.TabIndex = 8;
+            LblCuser.Text = "label3";
+            // 
             // FormHome
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(800, 450);
+            Controls.Add(LblCuser);
             Controls.Add(LblWelcome);
             Controls.Add(Btnout);
             Controls.Add(BtnView);
@@ -123,6 +139,7 @@
             Controls.Add(label1);
             Name = "FormHome";
             Text = "Home Page";
+            Load += FormHome_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -136,5 +153,6 @@
         private Button BtnView;
         private Button Btnout;
         private Label LblWelcome;
+        private Label LblCuser;
     }
 }

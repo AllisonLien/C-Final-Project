@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,58 +7,88 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Pet_Adoption_and_Shelter_Management_System
 {
     public partial class FormRegister : Form
     {
+        public Database MYDB;
+        public MySqlConnection mySqlConnection;
         public FormRegister()
         {
             InitializeComponent();
-            TxtPass.PasswordChar = '*';
-            TxtCpass.PasswordChar = '*';
-            ComRole.SelectedIndex = 0;
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtName.Text))
+            string username = TxtName.Text;
+            string password = TxtPass.Text;
+            string confirm = TxtCpass.Text;
+            string role = "Adopter";
+
+
+
+            if (username == "" || password == "" || confirm=="")
             {
-                MessageBox.Show("Enter username!");
+                MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(TxtPass.Text))
+          
+            using (MySqlConnection conn = MYDB.Connect())
             {
-                MessageBox.Show("Enter password!");
-                return;
-            }
+                try
+                {
+                    conn.Open();
 
-            if (TxtPass.Text != TxtCpass.Text)
-            {
-                MessageBox.Show("Passwords don't match!");
-                return;
-            }
+                    string checkSql = "SELECT * FROM users WHERE username=@u";
+                    MySqlCommand checkCmd = new MySqlCommand(checkSql, conn);
+                    checkCmd.Parameters.AddWithValue("@u", username);
 
-            MessageBox.Show("Registration Successful!");
-            this.Close();
+                    MySqlDataReader reader = checkCmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        MessageBox.Show("This username already exists!");
+                        return;
+                    }
+                    reader.Close();
+
+                    string insertSql = "INSERT INTO users (username, password, role) VALUES (@u, @p, @r)";
+                    MySqlCommand insertCmd = new MySqlCommand(insertSql, conn);
+                    insertCmd.Parameters.AddWithValue("@u", username);
+                    insertCmd.Parameters.AddWithValue("@p", password);
+                    insertCmd.Parameters.AddWithValue("@r", role);
+
+                    insertCmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Registration successful!");
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
         }
 
-        private void BtnClear_Click(object sender, EventArgs e)
+        private void FormRegister_Load(object sender, EventArgs e)
         {
-            TxtName.Clear();
-            TxtPass.Clear();
-            TxtCpass.Clear();
+            MYDB = new Database("localhost", "root", "admin", "petdb", "3306");
+
+            ComRole.Text = "Adopter";
+            ComRole.Enabled = false;
         }
 
-        private void label1_Click(object sender, EventArgs e) { }
-        private void LblName_Click(object sender, EventArgs e) { }
-        private void TxtName_TextChanged(object sender, EventArgs e) { }
-        private void FormRegister_Load(object sender, EventArgs e) { }
-        private void TxtPass_TextChanged(object sender, EventArgs e) { }
-        private void LblCpass_Click(object sender, EventArgs e) { }
-        private void TxtCpass_TextChanged(object sender, EventArgs e) { }
-        private void LblRole_Click(object sender, EventArgs e) { }
-        private void ComRole_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void BtnCancle_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("are you sure?", "Calcel registeration", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }

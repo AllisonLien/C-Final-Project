@@ -38,7 +38,7 @@
             TxtCpass = new TextBox();
             ComRole = new ComboBox();
             BtnRegister = new Button();
-            BtnClear = new Button();
+            BtnCancle = new Button();
             SuspendLayout();
             // 
             // label1
@@ -56,7 +56,7 @@
             // 
             LblName.AutoSize = true;
             LblName.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
-            LblName.Location = new Point(238, 102);
+            LblName.Location = new Point(238, 105);
             LblName.Name = "LblName";
             LblName.Size = new Size(97, 21);
             LblName.TabIndex = 1;
@@ -135,16 +135,18 @@
             BtnRegister.TabIndex = 9;
             BtnRegister.Text = "Register ";
             BtnRegister.UseVisualStyleBackColor = true;
+            BtnRegister.Click += BtnRegister_Click;
             // 
-            // BtnClear
+            // BtnCancle
             // 
-            BtnClear.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
-            BtnClear.Location = new Point(486, 315);
-            BtnClear.Name = "BtnClear";
-            BtnClear.Size = new Size(96, 37);
-            BtnClear.TabIndex = 10;
-            BtnClear.Text = "Clear";
-            BtnClear.UseVisualStyleBackColor = true;
+            BtnCancle.Font = new Font("Segoe UI Symbol", 12F, FontStyle.Bold);
+            BtnCancle.Location = new Point(486, 315);
+            BtnCancle.Name = "BtnCancle";
+            BtnCancle.Size = new Size(96, 37);
+            BtnCancle.TabIndex = 10;
+            BtnCancle.Text = "Cancel";
+            BtnCancle.UseVisualStyleBackColor = true;
+            BtnCancle.Click += BtnCancle_Click;
             // 
             // FormRegister
             // 
@@ -152,7 +154,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(800, 450);
-            Controls.Add(BtnClear);
+            Controls.Add(BtnCancle);
             Controls.Add(BtnRegister);
             Controls.Add(ComRole);
             Controls.Add(TxtCpass);
@@ -165,6 +167,7 @@
             Controls.Add(label1);
             Name = "FormRegister";
             Text = "Register ";
+            Load += FormRegister_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -181,6 +184,6 @@
         private TextBox TxtCpass;
         private ComboBox ComRole;
         private Button BtnRegister;
-        private Button BtnClear;
+        private Button BtnCancle;
     }
 }

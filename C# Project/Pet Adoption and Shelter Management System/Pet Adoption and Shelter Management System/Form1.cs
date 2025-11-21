@@ -1,15 +1,15 @@
-using System;
-using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Pet_Adoption_and_Shelter_Management_System
 {
     public partial class FormLogin : Form
     {
+        public Database MYDB;
+        public MySqlConnection mySqlConnection;
         public FormLogin()
         {
             InitializeComponent();
-            TxtPass.PasswordChar = '*';
-            ComRole.SelectedIndex = 2;
         }
 
         private void LlblRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -20,73 +20,65 @@ namespace Pet_Adoption_and_Shelter_Management_System
 
         private void label1_Click(object sender, EventArgs e)
         {
+
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            // Check if fields are empty
-            if (string.IsNullOrWhiteSpace(TxtName.Text))
+            mySqlConnection = MYDB.Connect();
+
+            try
             {
-                MessageBox.Show("Please enter a username.", "Error");
-                return;
+                mySqlConnection.Open();
+
+                string sql = "SELECT * FROM users WHERE username=@u AND password=@p";
+                MySqlCommand cmd = new MySqlCommand(sql, mySqlConnection);
+                cmd.Parameters.AddWithValue("@u", TxtName.Text);
+                cmd.Parameters.AddWithValue("@p", TxtPass.Text);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    string username = reader["username"].ToString();
+                    string role = reader["role"].ToString();
+
+                    MessageBox.Show("Login Sucessfully");
+                    FormHome main = new FormHome(username, role);
+                    main.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("username or password are wrong!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (mySqlConnection.State == ConnectionState.Open)
+                    mySqlConnection.Close();
             }
 
-            if (string.IsNullOrWhiteSpace(TxtPass.Text))
-            {
-                MessageBox.Show("Please enter a password.", "Error");
-                return;
-            }
+        }
 
-            if (ComRole.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a role.", "Error");
-                return;
-            }
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
 
-            // Get values
-            string username = TxtName.Text.Trim();
-            string password = TxtPass.Text;
-            string role = ComRole.SelectedItem.ToString();
+        }
 
-            // Check login (hardcoded users)
-            bool loginSuccess = false;
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            MYDB = new Database("localhost", "root", "admin", "petdb", "3306");
 
-            if (username == "admin" && password == "admin123" && role == "Admin")
-            {
-                loginSuccess = true;
-                UserSession.SetUser(1, username, role);
-            }
-            else if (username == "staff" && password == "staff123" && role == "Shelter Staff")
-            {
-                loginSuccess = true;
-                UserSession.SetUser(2, username, role);
-            }
-            else if (username == "user" && password == "user123" && role == "Adopter")
-            {
-                loginSuccess = true;
-                UserSession.SetUser(3, username, role);
-            }
-
-            // Show result
-            if (loginSuccess)
-            {
-                MessageBox.Show("Login Successful! Welcome " + username, "Success");
-                FormHome homeForm = new FormHome();
-                this.Hide();
-                homeForm.ShowDialog();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Invalid username, password, or role!", "Login Failed");
-                TxtPass.Clear();
-            }
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
         {
-            FormRegister formRegister = new FormRegister();
-            formRegister.ShowDialog();
+
         }
     }
 }

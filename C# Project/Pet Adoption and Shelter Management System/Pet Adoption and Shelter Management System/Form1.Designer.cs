@@ -1,4 +1,4 @@
-namespace Pet_Adoption_and_Shelter_Management_System
+﻿namespace Pet_Adoption_and_Shelter_Management_System
 {
     partial class FormLogin
     {
@@ -38,7 +38,6 @@ namespace Pet_Adoption_and_Shelter_Management_System
             ComRole = new ComboBox();
             LblRegister = new Label();
             LlblRegister = new LinkLabel();
-            BtnRegister = new Button();
             SuspendLayout();
             // 
             // label1
@@ -90,14 +89,14 @@ namespace Pet_Adoption_and_Shelter_Management_System
             // BtnLogin
             // 
             BtnLogin.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            BtnLogin.Location = new Point(230, 291);
+            BtnLogin.Location = new Point(339, 288);
             BtnLogin.Margin = new Padding(4);
             BtnLogin.Name = "BtnLogin";
             BtnLogin.Size = new Size(96, 32);
             BtnLogin.TabIndex = 4;
             BtnLogin.Text = "Login";
             BtnLogin.UseVisualStyleBackColor = true;
-            BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
+            BtnLogin.Click += BtnLogin_Click;
             // 
             // TxtName
             // 
@@ -120,7 +119,7 @@ namespace Pet_Adoption_and_Shelter_Management_System
             // ComRole
             // 
             ComRole.FormattingEnabled = true;
-            ComRole.Items.AddRange(new object[] { "Admin", "Shelter Staff", "Adopter" });
+            ComRole.Items.AddRange(new object[] { "admin", "staff", "adopter" });
             ComRole.Location = new Point(330, 228);
             ComRole.Name = "ComRole";
             ComRole.Size = new Size(127, 29);
@@ -129,7 +128,7 @@ namespace Pet_Adoption_and_Shelter_Management_System
             // LblRegister
             // 
             LblRegister.AutoSize = true;
-            LblRegister.Location = new Point(178, 365);
+            LblRegister.Location = new Point(178, 342);
             LblRegister.Name = "LblRegister";
             LblRegister.Size = new Size(129, 21);
             LblRegister.TabIndex = 9;
@@ -139,32 +138,20 @@ namespace Pet_Adoption_and_Shelter_Management_System
             // 
             LlblRegister.AutoSize = true;
             LlblRegister.LinkColor = Color.Blue;
-            LlblRegister.Location = new Point(330, 365);
+            LlblRegister.Location = new Point(330, 342);
             LlblRegister.Name = "LlblRegister";
             LlblRegister.Size = new Size(116, 21);
             LlblRegister.TabIndex = 10;
             LlblRegister.TabStop = true;
             LlblRegister.Text = "Register Here!";
-            LlblRegister.LinkClicked += new LinkLabelLinkClickedEventHandler(this.LlblRegister_LinkClicked);
-            // 
-            // BtnRegister
-            // 
-            BtnRegister.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            BtnRegister.Location = new Point(399, 291);
-            BtnRegister.Name = "BtnRegister";
-            BtnRegister.Size = new Size(98, 31);
-            BtnRegister.TabIndex = 11;
-            BtnRegister.Text = "Register";
-            BtnRegister.UseVisualStyleBackColor = true;
-            BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
+            LlblRegister.LinkClicked += LlblRegister_LinkClicked;
             // 
             // FormLogin
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(734, 435);
-            Controls.Add(BtnRegister);
+            ClientSize = new Size(734, 396);
             Controls.Add(LlblRegister);
             Controls.Add(LblRegister);
             Controls.Add(ComRole);
@@ -179,6 +166,7 @@ namespace Pet_Adoption_and_Shelter_Management_System
             Margin = new Padding(4);
             Name = "FormLogin";
             Text = "Login";
+            Load += FormLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -195,6 +183,5 @@ namespace Pet_Adoption_and_Shelter_Management_System
         private ComboBox ComRole;
         private Label LblRegister;
         private LinkLabel LlblRegister;
-        private Button BtnRegister;
     }
 }
